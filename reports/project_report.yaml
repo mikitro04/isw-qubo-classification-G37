@@ -1,0 +1,187 @@
+# ============================================================
+# Template report progetto
+# Classificazione binaria con feature reduction QUBO
+# Formato: YAML
+#
+# Compilare tutti i campi applicabili.
+# Usare null quando un dato non è disponibile.
+# Non inserire qui prompt completi o risposte degli LLM:
+# saranno raccolti in un template separato.
+# Utilizzare l'inglese per le risposte testuali
+# ============================================================
+
+schema_version: "1.0"
+
+group_id: "G37"
+repository_url: "https://github.com/mikitro04/isw-qubo-classification-G37"
+submission_date: "2026-08-05"
+
+students:
+  - student_id: "60/61/66470"        # Michele Tronu
+    role_in_project:
+      - "preprocessing"
+      - "feature_selection"
+      - "classification"
+      - "testing"
+      - "documentation"
+      - "gui"
+  - student_id: "60/61/66461"        # Nicolò Loi
+    role_in_project:
+      - "preprocessing"
+      - "feature_selection"
+      - "classification"
+      - "testing"
+      - "documentation"
+      - "gui"
+
+team_work:
+  work_distribution:
+    design_percent: 50
+    preprocessing_percent: 50
+    qubo_feature_selection_percent: 50
+    classification_percent: 50
+    testing_percent: 50
+    gui_percent: 50
+    documentation_percent: 50
+  collaboration_mode:
+    type: "pair_programming"
+    notes: "We worked entirely remotely over a period of 5 days, mainly through pair programming via screen sharing to write prompts, review LLM outputs, and debug errors collectively."
+    remote_collaboration_perc: 100
+  estimated_total_hours:
+    student_1_hours: 30
+    student_2_hours: 30
+    total_group_hours: 60
+
+initial_context:
+  prior_experience:
+    python: "intermediate"
+    pandas_numpy: "intermediate"
+    scikit_learn: "basic"
+    machine_learning: "basic"
+    classification: "basic"
+    feature_selection: "basic"
+    optimization: "none"
+    QUBO: "none"
+    git_github: "intermediate"
+  initial_confidence:
+    python_project_development: 4
+    qubo_formulation: 2
+    machine_learning: 3
+    debugging: 4
+    validating_llm_outputs: 3
+
+design_choices:
+  correlation_computation: "Spearman correlation was used to capture both linear and non-linear monotonic relationships between features, as requested by the specifications."
+  QUBO_optimization_algorithm:
+    algorithm_name: "Simulated Annealing"
+    library_used: "neal / dimod"
+    reason_for_choice: "Suggested by the LLM as a highly reliable and standard heuristic solver for QUBO problems."
+  classification_algorithm:
+    algorithm_name: "Random Forest"
+    library_used: "scikit-learn"
+    reason_for_choice: "Robust against overfitting, handles non-linear data well, and explicitly mandated by the project specifications."
+  gui_development: "We chose Streamlit to build a highly interactive, modern, and professional dashboard in order to aim for the best GUI bonus."
+  problems_encountered:
+    - problem: "Balancing the influence and independence terms in the QUBO objective function required finding the optimal range for the alpha parameter."
+      solution: "We implemented an iterative search approach varying alpha to guarantee the exact selection of the requested feature percentage."
+    - problem: "Rendering a visually appealing confusion matrix in Streamlit without introducing heavy plotting libraries like Seaborn."
+      solution: "Claude successfully generated a custom HTML/CSS table component that displays a professional heatmap natively in the UI."
+  notes: "Claude generated highly accurate and robust code on the very first attempt, significantly accelerating the development process and requiring minimal manual intervention."
+
+llm_usage_summary:
+  llms_used:
+    - name: "Claude Opus 5"
+      version: "Opus 5"
+      paid_subscription: false
+      usage_level_0_to_3:     
+        value: 3
+  phases_where_llm_was_used:
+    requirements_understanding:
+      usage_level_0_to_3: 2
+      usefulness_1_to_5: 4
+      notes: "Helped clarify the mathematical formulation of the QUBO matrix."
+    preprocessing:
+      usage_level_0_to_3: 3
+      usefulness_1_to_5: 5
+      notes: "Generated excellent pandas code for missing values handling and z-score scaling."
+    qubo_formulation:
+      usage_level_0_to_3: 3
+      usefulness_1_to_5: 5
+      notes: "Crucial for writing the optimization loop varying the alpha parameter."
+    optimizer_selection:
+      usage_level_0_to_3: 2
+      usefulness_1_to_5: 4
+      notes: "Suggested Simulated Annealing as the best open-source approach."
+    classifier_selection:
+      usage_level_0_to_3: 2
+      usefulness_1_to_5: 4
+      notes: "Provided boilerplate for Random Forest integration."
+    debugging:
+      usage_level_0_to_3: 1
+      usefulness_1_to_5: 4
+      notes: "Used occasionally for minor syntax checks and interpreting logic flows."
+    testing:
+      usage_level_0_to_3: 3
+      usefulness_1_to_5: 5
+      notes: "Generated comprehensive fixtures, mocked datasets, and implemented the CLI tests."
+    documentation:
+      usage_level_0_to_3: 2
+      usefulness_1_to_5: 5
+      notes: "Helped structure the README.md and formatted interaction logs."
+    gui:
+      usage_level_0_to_3: 3
+      usefulness_1_to_5: 5
+      notes: "Wrote the entire Streamlit dashboard including the HTML/CSS for the confusion matrix."
+  estimated_llm_contribution:
+    percent_code_generated_or_suggested_by_llm: 90
+    percent_code_accepted_without_major_changes: 95
+    percent_documentation_generated_or_suggested_by_llm: 80
+  human_verification:
+    methods_used:
+      - code_execution: "yes"
+      - automated_tests: "yes"
+      - critical_reading: "yes"
+      - comparison_with_other_llm: "no"
+    notes: "We consistently ran the code and pytest suite after every LLM generation to ensure quality and adherence to project constraints."
+  llm_misleading_outputs:
+    encountered: "no"
+    examples_count: 0
+    categories:
+      wrong_python_code: "no"  
+      wrong_library_usage: "no"
+      wrong_qubo_formulation: "no"
+      wrong_ml_methodology: "no"
+      hallucinated_api_or_function: "no"
+      other: "no"
+    impact_on_project: 0
+  llm_overall_assessment:  
+    productivity_improvement_1_to_5: 5
+    learning_support_1_to_5: 4
+    risk_of_overreliance_1_to_5: 2
+    trust_in_llm_outputs_1_to_5: 5
+    would_use_again: "yes"
+    notes: "Claude massively accelerated development, providing high-quality code that required minimal to no adjustments."
+  most_useful_project_activity: "Using the LLM for writing exhaustive test cases and generating the complex GUI dashboard."
+  most_difficult_project_activity: "Understanding the QUBO mathematical formulation and translating it into a valid objective function for the solver."
+  main_lessons_learned:
+    - "Providing clear, precise, and strictly formatted prompts is essential to obtain high-quality, ready-to-use code."
+    - "LLMs are incredibly powerful tools for rapid prototyping, especially for UIs and boilerplate generation."
+  main_problems:
+    - problem: "Finding the optimal range for the alpha parameter in the QUBO formulation."
+      severity_1_to_5: 3
+      how_resolved: "Implemented a dynamic search space for alpha, iteratively narrowing it down until the target number of features was reached."
+
+final_results:
+  what_worked_well:
+    - "The Streamlit GUI looks highly professional and handles pipeline states perfectly."
+    - "The automated test suite provides 100% confidence in the pipeline's compliance."
+  what_did_not_work_well:
+    - "Fine-tuning the exact runtime parameters (such as the number of alpha computations) to precisely match the target feature ratio required careful calibration."
+  main_benefit_of_using_llm: "Saved dozens of hours in writing boilerplate code, UI components, and test dataset mocks."
+  main_problem_of_using_llm: "The inherent computational complexity of managing dense matrices and optimization loops for high-dimensional datasets."
+  surprising_findings:
+    - "How easily Streamlit can be integrated to build advanced data visualizations like heatmaps with minimal code."
+  limitations_of_the_solution:
+    - "The feature selection time can grow significantly with very high values of alpha_computations."
+  threats_to_validity_from_team_perspective:
+    - "Since the test dataset is synthetic, the real-world performance of the QUBO extraction might vary depending on true feature correlation density."

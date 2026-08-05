@@ -1,0 +1,10 @@
+group_id: G37
+students:
+  - matricola: "66470"
+  - matricola: "66461"
+main_llm_used: "Claude"
+paid_subscription_used: true
+second_llm_used: "Gemini"
+third_llm_used: "ChatGPT"
+notes: "Claude è stato utilizzato principalmente per la generazione del codice sorgente, lo sviluppo della pipeline QUBO e della GUI. Gemini è stato utilizzato per il debugging mirato, la risoluzione di problemi di importazione e la stesura del test per la CLI."
+project_finished: "true"
